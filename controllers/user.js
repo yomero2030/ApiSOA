@@ -1,5 +1,5 @@
 const { User } = require('../models/index');
-
+const bycrypt =  require("bcrypt");
 
 // Metodos para el crud
 
@@ -60,14 +60,17 @@ const getId = async(req, res) => {
 
 // Crear objeto
 const create = async(req, res) => {
+    
     try {
-        // let { name, last_name, email, password } = req.body;
+        console.log(req.body);
+        let { name, last_name, email, password } = req.body;
 
         let user = await User.create({
-            name: 'test',
-            last_name: 'test',
-            email: 'test',
-            password: 'test'
+            name ,
+            last_name,
+            email ,
+            password :  bycrypt.hashSync(password,10)
+        
         });
 
         if (!user) {
@@ -92,14 +95,72 @@ const create = async(req, res) => {
 
 
 //Actualizar
-const update = async(req, res) => {
+const destroy = async(req, res) => {
+    try {
+        let id =  req.params.id;
+        let user = await User.destroy({
+            where:{
+                id : id
+            }
+        });
+        if(!user){
+            return res.status(400).json({
+                ok :false,
+                message: 'User wes not'
+            });
+        }
+        return res.json({
+            ok : true,
+            user
+        });
+
+        
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+                message: 'not defuond'
+        });
+    }
 
 };
 
 
 // Eliminar
-const destroy = async(req, res) => {
+const update = async(req, res) => {
+    try {
+        let id = req.params.id;
+        let {name,last_name,email,password}= req.body;
 
+        let body = {
+            name,
+            last_name,
+            email,
+            password
+        }
+
+        let user = await User.update(body, {
+            where: {
+                id:id
+            },
+        })
+        if(!user){
+            return res.status(400).json({
+                ok : false,
+                user
+            });
+        }
+        return res.json({
+            ok : true,
+            user
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            err
+        });
+    
+    }
 };
 
 

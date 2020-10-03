@@ -1,8 +1,8 @@
 module.exports = {
 
-    database: 'test',
-    username: 'mopa2',
-    password: 'mopa251946',
+    database: 'soaV2',
+    username: 'postgres',
+    password: '171117',
     host: 'localhost',
     dialect: 'postgres',
 
@@ -11,12 +11,12 @@ module.exports = {
     },
 
     logging: false,
-
+/*
     dialectOptions: {
         ssl: {
             require: true,
             rejectUnauthorized: false
         }
-    }
+    }*/
 
 }

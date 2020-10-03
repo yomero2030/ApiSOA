@@ -8,7 +8,10 @@ route.get('/', getAll);
 
 route.get('/:id', getId);
 
-route.post('/', create)
+route.post('/',create)
 
+route.put('/:id',update);
+
+route.delete('/:id',destroy);
 
 module.exports = route;
