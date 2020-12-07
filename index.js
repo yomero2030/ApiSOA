@@ -1,3 +1,4 @@
+ 
 const express = require('express');
 
 const database = require('./models/index');
@@ -6,6 +7,12 @@ const app = express();
 
 
 const PORT = 4000;
+
+const cors = require('cors');
+
+
+//permisos
+app.use(cors());
 
 app.use(express.json());
 

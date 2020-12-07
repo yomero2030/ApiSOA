@@ -63,12 +63,13 @@ const create = async(req, res) => {
     
     try {
         console.log(req.body);
-        let { name, last_name, email, password } = req.body;
+        let { name, last_name, email, rol, password } = req.body;
 
         let user = await User.create({
             name ,
             last_name,
             email ,
+            rol,
             password :  bycrypt.hashSync(password,10)
         
         });

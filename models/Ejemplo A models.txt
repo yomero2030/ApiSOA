@@ -1,0 +1,9 @@
+   npx sequelize-cli model:generate --name Producto --attributes nombre:string,categoria:string,precio:Number,imagen:string
+
+   npxva sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+
+  npx sequelize-cli db:migrate
+
+  npx sequelize-cli db:migrate:undo
+
+  npx sequelize-cli model:generate --name Logs --attributes userId:string,rols:string,userName:string,formaInicio:string,status:string
