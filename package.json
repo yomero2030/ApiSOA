@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "nodemon index.js"
+        "test": "nodemon index.js",
+        "migration": "npx sequelize-cli db:migrate"
     },
     "author": "fabian",
     "license": "ISC",
