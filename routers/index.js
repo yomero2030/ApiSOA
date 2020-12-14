@@ -56,7 +56,13 @@ app.use('/comprador',[autenticacion,authcomprador],open);
 // RUTA DE ARCHIVOS LOGS  ALL METHODS 
 app.use('/admin/logs',require('./Logs'));
 
-
+/// PRUEBAS SERVER
+//test
+app.get('/test_deploy', (request , response)=>{
+        response.json({
+            ok: true, 
+            message: "Deploy"})
+    })
 
 
 module.exports = app;
