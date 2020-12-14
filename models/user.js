@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            User.hasMany(models.Producto, {
+                as: 'productos',
+                foreignKey: 'idUser',             ///llave foranea  solo en productos
+                sourceKey: 'id'                    //relacion con el atributo del modelo user 
+            });
         }
     };
     User.init({

@@ -1,23 +1,24 @@
 const { Producto } = require('../models/index');
 
 const createproducto = async(req, res) => {
-    
     try {
-        console.producto(req.body);
-        let { nombre, categoria, precio, imagen } = req.body;
+        console.log(req.body);
+        let { nombre, idUser, categoria, precio, imagen, descripcion } = req.body;
 
         let producto= await Producto.create({
+            idUser,
             nombre ,
             categoria,
             precio ,
             imagen ,
+            descripcion,
         
         });
 
         if (!producto) {
             return res.status(400).json({
                 ok: false,
-                message: 'User is not created'
+                message: 'Producto no creado'
             });
         }
 
@@ -31,13 +32,18 @@ const createproducto = async(req, res) => {
             ok: false,
             err
         });
+        
     }
 };
 
 // Listar
 const getAllproductos = async(req, res) => {
     try {
-        let produc = await Producto.findAll();
+        let produc = await Producto.findAll({
+            include: {
+                association: 'usuario'
+            }
+        });
 
         if (produc.length == 0) {
             return res.status(400).json({
@@ -66,7 +72,11 @@ const getId = async(req, res) => {
 
     try {
         let id = req.params.id;
-        let produc = await Producto.findByPk(id);
+        let produc = await Producto.findByPk(id,{
+            include: {
+                association: 'productos'
+            }
+        });
 
         if (!user) {
             return res.status(400).json({
@@ -89,9 +99,86 @@ const getId = async(req, res) => {
 };
 
 
+
+//ELIMINAR PRODUCTO
+const destroy = async(req, res) => {
+    try {
+        let id =  req.params.id;
+        let producto = await  Producto.destroy({
+            where:{
+                id : id
+            }
+        });
+        if(!producto){
+            return res.status(400).json({
+                ok :false,
+                message: 'no se encontro producto'
+            });
+        }
+        return res.json({
+            ok : true,
+            producto
+        });
+
+        
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+                message: 'not defuond'
+        });
+    }
+
+};
+//UPDATE PRODUCTO 
+const update = async(req, res) => {
+    try {
+        let id = req.params.id;
+        //let {name,last_name,email,password}= req.body;
+        let { nombre, idUser, categoria, precio, imagen, descripcion } = req.body;
+
+        let body = {
+            nombre,
+            idUser,
+            categoria,
+            precio,
+            imagen,
+            descripcion,
+        }
+
+        let producto = await Producto.update(body, {
+            where: {
+                id:id
+            },
+        })
+        if(!producto){
+            return res.status(400).json({
+                ok : false,
+                producto
+            });
+        }
+        return res.json({
+            ok : true,
+            producto
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            ok: false,
+            err
+        });
+    
+    }
+};
+
+
+
+
+
  module.exports = {
     createproducto,
      getAllproductos,
-     getId
+     getId,
+     destroy,
+     update,
 
  }

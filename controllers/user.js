@@ -6,7 +6,11 @@ const bycrypt =  require("bcrypt");
 // Listar
 const getAll = async(req, res) => {
     try {
-        let users = await User.findAll();
+        let users = await User.findAll({
+            include: {
+                association: 'productos'
+            }
+        });
 
         if (users.length == 0) {
             return res.status(400).json({
@@ -35,7 +39,11 @@ const getId = async(req, res) => {
 
     try {
         let id = req.params.id;
-        let user = await User.findByPk(id);
+        let user = await User.findByPk(id, {
+            include: {
+                association: 'productos'
+            }
+        });
 
         if (!user) {
             return res.status(400).json({

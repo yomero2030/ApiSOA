@@ -7,3 +7,7 @@
   npx sequelize-cli db:migrate:undo
 
   npx sequelize-cli model:generate --name Logs --attributes userId:string,rols:string,userName:string,formaInicio:string,status:string
+
+
+
+  

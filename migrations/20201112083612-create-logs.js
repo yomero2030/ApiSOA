@@ -22,7 +22,10 @@ module.exports = {
       },
       status: {
         type: Sequelize.STRING
-      }
+      },
+      actividad: {
+        type: Sequelize.STRING
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

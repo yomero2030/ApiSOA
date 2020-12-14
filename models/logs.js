@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     rols: DataTypes.STRING,
     userName: DataTypes.STRING,
     formaInicio: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    actividad: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Logs',

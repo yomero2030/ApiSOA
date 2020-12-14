@@ -8,6 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      idUser : {
+        type: Sequelize.INTEGER,
+        references: { 
+          model: 'users',
+          key: 'id'
+        }
+      },
       nombre: {
         type: Sequelize.STRING
       },
@@ -19,6 +26,9 @@ module.exports = {
       },
       imagen: {
         allowNull: false,
+        type: Sequelize.STRING
+      },
+      descripcion: {
         type: Sequelize.STRING
       },
     });

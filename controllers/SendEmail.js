@@ -13,15 +13,15 @@ const email = async (request, response) => {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: '171048@ids.upchiapas.edu.mx', // generated ethereal user
-                pass: 'chocobo1423', // generated ethereal password
+                user: '171117@ids.upchiapas.edu.mx', // generated ethereal user
+                pass: '171117interamericana', // generated ethereal password
             },
         });
 
         // send mail with defined transport object
 
         var info = await transporter.sendMail({
-            from: " ",
+            from: "fabi131415@hotmail.com ",
             to: email,
             subject: "Hamacas.com. Inicio de sesión detectado.",
             html: `
@@ -29,6 +29,7 @@ const email = async (request, response) => {
         <p>
         Estás recibiendo este correo electrónico en la cuenta ${email} porque estás 
         suscrito a hamacas.com. </p>
+        <p> Inicio de sesion Detectado <p>
         <p>
         Para dejar de recibir estos correos electrónico comunicate con un administrador para 
         cambiar la configuración de notificaciones. </p>
@@ -68,27 +69,27 @@ const emailRegistro = async (request, response) => {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: '171048@ids.upchiapas.edu.mx', // generated ethereal user
-                pass: 'chocobo1423', // generated ethereal password
+                user: '1711178@ids.upchiapas.edu.mx', // generated ethereal user
+                pass: '171117interamericana', // generated ethereal password
             },
         });
 
         // send mail with defined transport object
 
         var info = await transporter.sendMail({
-            from: "alex_roque14@hotmail.com",
+            from: "fabi131415@hotmail.com",
             to: email,
             subject: "AEROLINE. Registro Exitoso.",
             html: `
         <h1>Hola ${email} !</h1>
         <p>\nBienvenido a nuestra comunidad.\n 
-        Ahora ya estás listo para viajar a dónde quieras. \n
-        Vísita nuestra pagina (<a href:"http://localhost:4200/home">Aeroline) y adquiere
-        todos tus boletos.
+        Ahora ya estás listo  para disfrutar de la experiencia. \n
+        Vísita nuestra pagina (<a href:"http://localhost:4200/home">Hamacas.com y obten los beneficios
+        que tenemos para ti 
         </p>
         <p>
         Estás recibiendo este correo electrónico en la cuenta ${email} porque estás 
-        suscrito a AEROLINE. </p>
+        suscrito a Hamacas.com . </p>
         <p>Reenviar esta invitación podría permitir a cualquier destinatario enviar una respuesta 
         y realizar modificaciones a la cuenta. Areoline no se hace responsable en caso del reenvio de este email.
         </p>

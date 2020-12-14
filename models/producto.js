@@ -11,16 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Producto.belongsTo(models.User, {
+        as: 'usuario',
+        foreignKey: 'idUser',             ///llave foranea  solo en productos
+        sourceKey: 'id'  
+      });
     }
   };
   Producto.init({
     nombre: DataTypes.STRING,
     categoria: DataTypes.STRING,
     precio: DataTypes.NUMBER,
-    imagen: DataTypes.STRING
+    imagen: DataTypes.STRING,
+    idUser: DataTypes.INTEGER,
+    descripcion: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Producto',
   });
   return Producto;
 };
+
+//id user

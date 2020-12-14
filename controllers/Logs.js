@@ -33,14 +33,15 @@ const getAll = async ( request , response)=>{
 const createnewlogs =  async( request, response) => {
         try {
             console.log(request.body);
-            let {userId, rols, userName, formaInicio, status }= request.body;
+            let {userId, rols, userName, formaInicio, status, actividad }= request.body;
             console.log('ho');
             let lo= await Logs.create({
                 userId,
                 rols, 
                 userName, 
                 formaInicio, 
-                status
+                status,
+                actividad,
 
             }
             );
